@@ -47,7 +47,7 @@ export default function Home({ data = [] }) {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    router.push("/?report");
+    router.push("/?report","/report");
     setFormStep(1);
   };
 
