@@ -1,0 +1,96 @@
+.card {
+  max-width: 250px;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #eee;
+}
+
+.card .title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.card .items {
+  list-style: none;
+}
+
+.card .items.height {
+  min-height: 400px;
+}
+
+.card .items .item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+}
+
+.card .items .item.border {
+  border-bottom: 1px solid #eee;
+}
+
+.card .items .item .action {
+  visibility: hidden;
+  cursor: pointer;
+}
+
+.card .items .item .action.red {
+  color: red;
+}
+
+.card .items .item .action.green {
+  color: green;
+}
+
+.card .items .item .weight {
+  color: gray;
+}
+
+.card .items .item:hover .action {
+  visibility: visible;
+}
+
+.card .items .item:hover .weight {
+  display: none;
+}
+
+.card .bottom .total {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0.5rem 1rem;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  font-size: 0.8rem;
+}
+
+.card .bottom .total .danger {
+  color: red;
+}
+
+.card .bottom button.submit {
+  background-color: #000;
+  color: #fff;
+  padding: 0.6rem 3rem;
+  border-radius: 5px;
+  margin: 1rem 0;
+}
+
+.card .bottom button.disabled {
+  background-color: gray !important;
+}
+/*# sourceMappingURL=Card.css.map */

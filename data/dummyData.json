@@ -1,0 +1,16 @@
+{
+  "items": [
+    { "label": "tshirt", "weight": 200 },
+    { "label": "chaussures", "weight": 800 },
+    { "label": "ordinateur portable", "weight": 1000 },
+    { "label": "livre", "weight": 800 },
+    { "label": "chargeur", "weight": 140 },
+    { "label": "bouteille", "weight": 1000 },
+    { "label": "appareil photo", "weight": 600 },
+    { "label": "souvenir", "weight": 400 },
+    { "label": "raquette de tenis", "weight": 700 },
+    { "label": "ballon de football", "weight": 500 },
+    { "label": "boules de pétanque", "weight": 6000 },
+    { "label": "haltères", "weight": 15000 }
+  ]
+}
