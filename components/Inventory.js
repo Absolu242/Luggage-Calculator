@@ -39,7 +39,7 @@ export default function Inventory({ data = [] }) {
               <p>{item.label}</p>{" "}
               <p>
                 <span onClick={() => onAddItem(item)} className="action green">
-                  Add ->
+                  Add 
                 </span>{" "}
                 <span className="weight">{item.weight}g</span>
               </p>

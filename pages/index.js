@@ -50,7 +50,7 @@ export default function Home({ data = [] }) {
 
   useEffect(() => {
     router.replace("/");
-  }, []);
+  }, [router]);
 
   const onFormSubmit = (e) => {
     e.preventDefault();
