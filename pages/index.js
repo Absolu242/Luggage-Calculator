@@ -1,6 +1,5 @@
-
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 
 //components
@@ -11,8 +10,6 @@ import Selected from "../components/Selected";
 //data
 import { airlines } from "../data/airline";
 import { getData } from "../utils/getData";
-
-
 
 const FormContainer = styled.form`
   .form__content {
@@ -48,16 +45,11 @@ export default function Home({ data = [] }) {
     setCompanyLimit(e.target.value);
   };
 
-  useEffect(() => {
-    router.replace("/");
-  }, );
-
   const onFormSubmit = (e) => {
     e.preventDefault();
     router.push("/?report");
     setFormStep(1);
   };
-
 
   return (
     <FormContainer className="form" onSubmit={onFormSubmit}>
@@ -94,8 +86,6 @@ export default function Home({ data = [] }) {
     </FormContainer>
   );
 }
-
-
 
 export const getStaticProps = async () => {
   //const {items} = await require("../data/dummyData.json");
