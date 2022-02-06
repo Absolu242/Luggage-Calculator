@@ -1,14 +1,18 @@
-import { Provider } from "react-redux";
-import store from "../redux/store";
+import { AppProvider } from "../context/Appstore";
+
+//styles
 import "../styles/globals.css";
 import "../styles/loadingSpinner.css";
 import "../styles/Card.css";
+import "../styles/form.css"
+
+
 
 function MyApp({ Component, pageProps }) {
   return (
-    <Provider store={store}>
+    <AppProvider>
       <Component {...pageProps} />
-    </Provider>
+    </AppProvider>
   );
 }
 

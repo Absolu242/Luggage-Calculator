@@ -1,11 +1,15 @@
-import React from "react";
-import {  useSelector } from "react-redux";
-
-
+import React, { useContext } from "react";
+import { AppContext } from "../context/Appstore";
 
 export default function Backpack({ limit }) {
-  const data = useSelector((state) => state.selectedItems);
 
+
+  const { state } = useContext(AppContext);
+
+  // here we check if there is items or not
+  const data = state.selected.length === 0 ? [] : state.selected;
+
+  //here we calculate the total weight of the items
   const total =
     data.length === 0
       ? 0
@@ -27,7 +31,7 @@ export default function Backpack({ limit }) {
             <li key={i} className="item">
               <p>{item.label}</p>{" "}
               <p className="right">
-                <span className="weight">{item.weight}g</span>
+                <span className="noHover weight">{item.weight}g</span>
               </p>
             </li>
           ))

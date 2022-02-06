@@ -1,25 +1,35 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
-import { removeInventory } from "../redux/Inventory.slices";
-import { addSelected } from "../redux/Selected.slices";
+import React, { useContext } from "react";
+import { AppContext } from "../context/Appstore";
+
 
 
 export default function Inventory({ data = [] }) {
-  const dispatch = useDispatch();
-  const selected = useSelector((state) => state.selectedItems);
+ 
+  const {dispatch,state} = useContext(AppContext);
 
+
+  /*function to transfer items from the inventory row to the selected row*/
   const onAddItem = (item) => {
-    dispatch(addSelected(item));
-    dispatch(removeInventory(item));
+    dispatch({type:"ADD_SELECTED", payload: item});
+    dispatch({type:"REMOVE_INVENTORY", payload: item});
   };
 
-  // Ici je calcule la difference d'items entre Inventory et Selected
-  const dataDifference =
-    data.length > 0 &&
-    data.filter(
+  //inventory data coming from the server
+  const OriginalInventoryData = data 
+
+  //data or items marked as selected
+  const selectedData = state.selected
+
+
+  /*here we calculate the difference of items between
+  the original data items and the selected items.
+  And we return as result the items which are not in the selected row 
+  */
+  const dataDifference = 
+  OriginalInventoryData.length > 0 &&
+  OriginalInventoryData.filter(
       ({ label: label1 }) =>
-        !selected.some(({ label: label2 }) => label2 === label1)
+        !selectedData.some(({ label: label2 }) => label2 === label1)
     );
 
   return (

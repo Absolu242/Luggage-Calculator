@@ -1,21 +1,25 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
-import { addInventory } from "../redux/Inventory.slices";
-import { removeSelected } from "../redux/Selected.slices";
+import React, { useContext } from "react";
+import { AppContext } from "../context/Appstore";
 
 export default function Selected({ limit }) {
-  const data = useSelector((state) => state.selectedItems);
-  const dispatch = useDispatch();
+ 
+  const {state,dispatch}= useContext(AppContext)
 
+  // here we check if there is items or not
+  const data = state.selected.length === 0  ? [] : state.selected  
+
+
+  //here we calculate the total weight of the items
   const total =
     data.length === 0
       ? 0
       : data.reduce((accumulator, item) => accumulator + item.weight, 0);
 
+
+  // this function transfers back items from the selected row to the inventory row
   const onRemoveItem = (item) => {
-    dispatch(addInventory(item));
-    dispatch(removeSelected(item));
+    dispatch({type:"ADD_INVENTORY", payload: item});
+    dispatch({type:"REMOVE_SELECTED", payload: item});
   };
 
   return (
@@ -59,5 +63,7 @@ export default function Selected({ limit }) {
         </button>
       </div>
     </div>
-  );
+ 
+ 
+ );
 }

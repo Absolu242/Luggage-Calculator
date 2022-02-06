@@ -1,0 +1,24 @@
+.form {
+  .form__content {
+    text-align: center;
+    padding: 3rem 0;
+  }
+
+  select {
+    padding: 0.8rem 1rem;
+    background-color: #fff;
+    cursor: pointer;
+    border: none;
+  }
+
+  .form__main {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 2rem;
+
+    .arrow {
+      margin: 2rem;
+    }
+  }
+}

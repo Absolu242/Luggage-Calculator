@@ -1,0 +1,29 @@
+.form .form__content {
+  text-align: center;
+  padding: 3rem 0;
+}
+
+.form select {
+  padding: 0.8rem 1rem;
+  background-color: #fff;
+  cursor: pointer;
+  border: none;
+}
+
+.form .form__main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 2rem;
+}
+
+.form .form__main .arrow {
+  margin: 2rem;
+}
+/*# sourceMappingURL=form.css.map */

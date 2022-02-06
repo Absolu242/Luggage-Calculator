@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
-import styled from "styled-components";
+import { useEffect, useState } from "react";
 
 //components
 import Backpack from "../components/Backpack";
@@ -11,59 +10,41 @@ import Selected from "../components/Selected";
 import { airlines } from "../data/airline";
 import { getData } from "../utils/getData";
 
-const FormContainer = styled.form`
-  .form__content {
-    text-align: center;
-    padding: 3rem 0;
-  }
-
-  select {
-    padding: 0.8rem 1rem;
-    background-color: #fff;
-    cursor: pointer;
-    border: none;
-  }
-
-  .form__main {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 2rem;
-
-    .arrow {
-      margin: 2rem;
-    }
-  }
-`;
-
 export default function Home({ data = [] }) {
+  const [company, setCompany] = useState("");
   const [companyLimit, setCompanyLimit] = useState(0);
   const router = useRouter();
-  const [formStep, setFormStep] = useState(0);
 
+ 
   const onHandlehange = (e) => {
-    setCompanyLimit(e.target.value);
+    setCompany(e.target.value);
   };
 
+  useEffect(() => {
+    //we get the limit of the company
+    let filterCompany = airlines.filter((item) => item.label === company);
+    let getLimit = filterCompany[0] === undefined ? 0 : filterCompany[0].limit;
+    setCompanyLimit(getLimit);
+  }, [company]);
+
+  //this form submit the form and send us to the report page
   const onFormSubmit = (e) => {
     e.preventDefault();
-    router.push("/?report");
-    setFormStep(1);
+    router.push(`/report/?company=${company}`);
   };
 
   return (
-    <FormContainer className="form" onSubmit={onFormSubmit}>
+    <form className="form" onSubmit={onFormSubmit}>
       <div className="form__content">
         <div>
           <select
             name="airlines"
-            value={companyLimit}
+            value={company}
             onChange={(e) => onHandlehange(e)}
-            disabled={formStep >= 1 && true}
           >
             <option value={0}>Select a Company</option>
             {airlines.map((item, i) => (
-              <option key={i} value={item.limit}>
+              <option key={i} value={item.label}>
                 {item.label}
               </option>
             ))}
@@ -71,32 +52,27 @@ export default function Home({ data = [] }) {
         </div>
 
         <div className="form__main">
-          {formStep < 1 ? (
-            <>
-              {" "}
-              <Inventory data={data.items} />
-              <div className="arrow"></div>
-              <Selected limit={companyLimit} />
-            </>
-          ) : (
-            <Backpack />
-          )}
+          <Inventory data={data.items} />
+          <div className="arrow"></div>
+          <Selected limit={companyLimit} />
         </div>
       </div>
-    </FormContainer>
+    </form>
   );
 }
 
 export const getStaticProps = async () => {
-  //const {items} = await require("../data/dummyData.json");
+  // const data = await require("../data/dummyData.json");
 
+  // return { props: { data: JSON.parse(JSON.stringify(data)) } };
   try {
     const { data, errors } = await getData();
+    const loadingData = {};
     if (errors || !data) {
-      return { props: [] };
+      return { props: { data: JSON.parse(JSON.stringify(errors)) } };
     }
     return { props: { data: JSON.parse(JSON.stringify(data)) } };
   } catch (error) {
-    return { props: [] };
+    return { notFound: true };
   }
 };

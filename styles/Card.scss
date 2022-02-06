@@ -15,8 +15,8 @@
 
   .items {
     list-style: none;
-    
-    &.height{
+
+    &.height {
       min-height: 400px;
     }
 
@@ -27,7 +27,7 @@
       padding: 0.5rem 1rem;
       font-size: 0.8rem;
 
-      &.border{
+      &.border {
         border-bottom: 1px solid #eee;
       }
 
@@ -35,12 +35,12 @@
         visibility: hidden;
         cursor: pointer;
 
-        &.red{
+        &.red {
           color: red;
         }
 
-        &.green{
-          color:green
+        &.green {
+          color: green;
         }
       }
 
@@ -56,6 +56,10 @@
         .weight {
           display: none;
         }
+
+        .noHover.weight {
+          display: block;
+        }
       }
     }
   }
@@ -68,6 +72,7 @@
       border-top: 1px solid #eee;
       border-bottom: 1px solid #eee;
       font-size: 0.8rem;
+      font-weight: 600;
       .danger {
         color: red;
       }
